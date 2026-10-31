@@ -4,362 +4,192 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Un detalle para ti 💜</title>
+<title>Un regalo para ti 💜</title>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;1,500&family=Poppins:wght@300;400;500;600&display=swap');
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-:root {
-    --purple: #8d61a8;
-    --dark-purple: #68457f;
-    --light-purple: #ead8f4;
-    --pink: #f6dce9;
-    --green: #648f65;
-}
-
 body {
     min-height: 100vh;
-    font-family: Georgia, serif;
-    color: var(--dark-purple);
-    background:
-        radial-gradient(circle at 15% 15%, #fff8ff 0, transparent 35%),
-        radial-gradient(circle at 85% 85%, #e9d6f7 0, transparent 35%),
-        linear-gradient(135deg, #f9eafa, #eadcf7, #fcebf2);
     overflow-x: hidden;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #f5eaff, #ead8ff, #f9edff);
+    color: #674b78;
 }
-
-button {
-    font-family: inherit;
-    cursor: pointer;
-    border: none;
-}
-
-/* FONDO DECORATIVO */
-
-#decorations {
-    position: fixed;
-    inset: 0;
-    overflow: hidden;
-    pointer-events: none;
-    z-index: 0;
-}
-
-.float-item {
-    position: absolute;
-    bottom: -40px;
-    animation: floatUp linear infinite;
-    opacity: 0;
-}
-
-@keyframes floatUp {
-    0% {
-        transform: translateY(0) rotate(0deg);
-        opacity: 0;
-    }
-    15% {
-        opacity: .5;
-    }
-    85% {
-        opacity: .4;
-    }
-    100% {
-        transform: translateY(-110vh) rotate(45deg);
-        opacity: 0;
-    }
-}
-
-/* PANTALLAS */
 
 .screen {
     min-height: 100vh;
-    width: 100%;
     display: none;
-    position: relative;
-    z-index: 1;
-    padding: 30px 18px;
-    align-items: center;
     justify-content: center;
+    align-items: center;
     flex-direction: column;
+    padding: 30px 18px;
     text-align: center;
 }
 
 .screen.active {
     display: flex;
-    animation: screenIn .9s ease both;
+    animation: screenAppear 1s ease;
 }
 
-@keyframes screenIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+@keyframes screenAppear {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+h1, h2 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 500;
+}
+
+h1 {
+    font-size: clamp(2rem, 7vw, 3.2rem);
+    margin-bottom: 12px;
+}
+
+p {
+    line-height: 1.8;
+}
+
+/* FONDO DECORATIVO */
+
+.background-heart {
+    position: fixed;
+    color: #c69ce6;
+    opacity: .35;
+    pointer-events: none;
+    animation: float 8s ease-in-out infinite;
+}
+
+.heart1 { top: 12%; left: 9%; font-size: 25px; }
+.heart2 { top: 70%; right: 10%; font-size: 35px; animation-delay: 2s; }
+.heart3 { top: 35%; right: 17%; font-size: 20px; animation-delay: 4s; }
+.heart4 { bottom: 12%; left: 15%; font-size: 30px; animation-delay: 1s; }
+
+@keyframes float {
+    0%, 100% { transform: translateY(0) rotate(0); }
+    50% { transform: translateY(-22px) rotate(12deg); }
 }
 
 /* BOTONES */
 
-.main-button {
-    color: white;
-    background: linear-gradient(135deg, #a77bc0, #805294);
-    padding: 15px 28px;
-    border-radius: 35px;
-    font-size: 16px;
-    box-shadow: 0 8px 22px #80539735;
+button {
+    border: none;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
     transition: .3s;
-    margin-top: 18px;
+}
+
+.main-button {
+    background: linear-gradient(135deg, #a879cb, #8051a5);
+    color: white;
+    padding: 13px 27px;
+    border-radius: 30px;
+    font-size: 15px;
+    box-shadow: 0 6px 18px #a77bc766;
+    margin-top: 24px;
 }
 
 .main-button:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 25px #80539745;
-}
-
-.secondary-button {
-    color: #805294;
-    background: #fffaff;
-    border: 1px solid #d8bce8;
-    padding: 13px 23px;
-    border-radius: 30px;
-    margin: 8px;
-    transition: .3s;
-}
-
-.secondary-button:hover {
-    background: #f3e5fa;
     transform: translateY(-3px);
+    box-shadow: 0 9px 23px #a77bc799;
 }
 
-/* PORTADA */
-
-.cover {
-    width: 100%;
-    max-width: 480px;
-}
-
-.small-label {
-    display: inline-block;
-    color: #9b75ad;
-    background: #ffffffa8;
-    padding: 9px 18px;
-    border-radius: 30px;
-    letter-spacing: 2px;
-    font-size: 11px;
-    margin-bottom: 22px;
-}
-
-.cover h1 {
-    color: #805294;
-    font-size: clamp(30px, 7vw, 45px);
-    line-height: 1.2;
-    margin-bottom: 15px;
-}
-
-.cover p {
-    font-size: 16px;
-    line-height: 1.7;
-    color: #806c8b;
-}
-
-/* SOBRE */
-
-.envelope-area {
-    height: 230px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 15px 0;
-}
+/* PRIMERA PANTALLA: SOBRE */
 
 .envelope {
-    width: 235px;
-    height: 150px;
+    width: 250px;
+    height: 165px;
+    background: #b995d3;
     position: relative;
-    background: #c8a4dc;
+    margin: 45px 0 25px;
     border-radius: 5px;
-    box-shadow: 0 18px 35px #76508a35;
-    cursor: pointer;
+    box-shadow: 0 15px 30px #8965a344;
+    animation: envelopeFloat 3s ease-in-out infinite;
 }
 
-.envelope-back {
+.envelope::before {
+    content: "";
     position: absolute;
     inset: 0;
-    background: #b88dcc;
-    border-radius: 5px;
-}
-
-.envelope-letter {
-    position: absolute;
-    width: 195px;
-    height: 125px;
-    background: #fffaff;
-    left: 20px;
-    top: 10px;
-    border-radius: 5px;
-    transition: transform 1s ease;
+    background: #d8c0eb;
+    clip-path: polygon(0 0, 50% 58%, 100% 0);
     z-index: 2;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #9a72b0;
-    font-size: 30px;
 }
 
-.envelope-front {
+.envelope::after {
+    content: "💜";
+    position: absolute;
+    z-index: 3;
+    top: 58%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 35px;
+}
+
+.envelope-bottom {
     position: absolute;
     inset: 0;
-    background: #c9a5dc;
-    clip-path: polygon(0 0, 50% 65%, 100% 0, 100% 100%, 0 100%);
-    z-index: 3;
-}
-
-.envelope-flap {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 80px;
-    background: #a87cc0;
-    clip-path: polygon(0 0, 100% 0, 50% 100%);
-    transform-origin: top;
-    transition: transform .8s ease;
-    z-index: 4;
-}
-
-.envelope-seal {
-    position: absolute;
-    z-index: 5;
-    top: 57px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 28px;
-    transition: opacity .3s;
-}
-
-.envelope.open .envelope-flap {
-    transform: rotateX(180deg);
+    background: #a77dc5;
+    clip-path: polygon(0 100%, 50% 43%, 100% 100%);
     z-index: 1;
 }
 
-.envelope.open .envelope-letter {
-    transform: translateY(-105px);
-}
-
-.envelope.open .envelope-seal {
-    opacity: 0;
+@keyframes envelopeFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
 }
 
 /* CARTA */
 
 .letter {
-    max-width: 680px;
-    width: 100%;
-    padding: clamp(25px, 6vw, 50px);
-    background: #fffaffed;
-    border: 1px solid #e7d5ed;
-    border-radius: 8px;
-    outline: 1px solid #e7d5ed;
-    outline-offset: 7px;
-    box-shadow: 0 20px 55px #79518d20;
-    text-align: left;
-    position: relative;
-    opacity: 0;
-    transform: translateY(40px) scale(.96);
-}
-
-.letter::before,
-.letter::after {
-    content: "✦";
-    position: absolute;
-    color: #c69bda;
-    font-size: 23px;
-}
-
-.letter::before {
-    top: 15px;
-    left: 18px;
-}
-
-.letter::after {
-    bottom: 15px;
-    right: 18px;
-}
-
-.letter.reveal {
-    animation: letterReveal 1.2s ease forwards;
-}
-
-@keyframes letterReveal {
-    to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-    }
+    width: min(90%, 570px);
+    background: #fffaff;
+    padding: 35px 30px;
+    border-radius: 15px;
+    box-shadow: 0 12px 35px #9c72b533;
+    border: 1px solid #ead9f5;
 }
 
 .letter h2 {
-    text-align: center;
-    color: #9164aa;
-    font-size: clamp(26px, 5vw, 35px);
-    margin-bottom: 28px;
+    font-size: 2rem;
+    color: #8b60a9;
+    margin-bottom: 20px;
 }
 
 .letter p {
-    font-size: 16px;
-    line-height: 1.9;
-    color: #67556e;
-    margin-bottom: 16px;
+    font-size: 14px;
+    color: #705a7b;
+    margin-bottom: 13px;
+    text-align: left;
 }
 
 .signature {
+    margin-top: 22px;
     text-align: right;
-    font-size: 20px;
+    font-family: 'Playfair Display', serif;
     font-style: italic;
-    color: #9368aa;
-    margin-top: 28px;
+    font-size: 19px;
+    color: #9567b5;
 }
 
-.letter-actions {
-    margin-top: 30px;
-    opacity: 0;
-}
-
-.letter-actions.reveal {
-    animation: fadeIn .9s ease forwards;
-}
-
-@keyframes fadeIn {
-    to { opacity: 1; }
-}
-
-/* RAMO */
-
-.flower-title {
-    font-size: clamp(29px, 6vw, 41px);
-    color: #805294;
-    margin-bottom: 10px;
-}
-
-.flower-subtitle {
-    font-size: 16px;
-    color: #92799e;
-    line-height: 1.6;
-    margin-bottom: 10px;
-}
+/* RAMO DE FLORES */
 
 .bouquet {
-    width: min(650px, 100%);
+    width: min(100%, 520px);
+    margin: 10px auto;
     opacity: 0;
-    transform: translateY(25px) scale(.94);
+    transform: translateY(35px) scale(.9);
 }
 
 .bouquet.reveal {
-    animation: bouquetReveal 1.2s ease forwards;
+    animation: bouquetReveal 1.5s cubic-bezier(.2,.8,.2,1) forwards;
 }
 
 @keyframes bouquetReveal {
@@ -369,28 +199,46 @@ button {
     }
 }
 
-.bouquet-svg {
+.bouquet svg {
     width: 100%;
     height: auto;
     overflow: visible;
+    filter: drop-shadow(0 12px 12px #80609a33);
 }
-
-/* TALLOS */
 
 .stem {
     fill: none;
-    stroke: #56835a;
-    stroke-width: 5;
+    stroke: #648d70;
+    stroke-width: 6;
     stroke-linecap: round;
+    stroke-dasharray: 350;
+    stroke-dashoffset: 350;
+}
+
+.bouquet.reveal .stem {
+    animation: drawStem 1.8s ease forwards;
+}
+
+@keyframes drawStem {
+    to { stroke-dashoffset: 0; }
 }
 
 .leaf {
-    fill: #78a875;
-    stroke: #4f8052;
-    stroke-width: 1.4;
+    fill: url(#leafGradient);
+    opacity: 0;
+    transform-box: fill-box;
+    transform-origin: center;
 }
 
-/* TULIPANES INDIVIDUALES */
+.bouquet.reveal .leaf {
+    animation: leafAppear .8s ease forwards;
+    animation-delay: 1s;
+}
+
+@keyframes leafAppear {
+    from { opacity: 0; transform: scale(.3) rotate(-15deg); }
+    to { opacity: 1; transform: scale(1) rotate(0); }
+}
 
 .tulip {
     opacity: 0;
@@ -399,571 +247,365 @@ button {
 }
 
 .bouquet.reveal .tulip {
-    animation: tulipGrow 1s cubic-bezier(.2,.8,.2,1) forwards;
-    animation-delay: var(--delay);
+    animation:
+        flowerAppear 1.1s ease forwards,
+        flowerSway 5s ease-in-out 1.5s infinite;
+    animation-delay: var(--delay), 2.5s;
 }
 
-@keyframes tulipGrow {
-    0% {
-        opacity: 0;
-        transform: translateY(45px) scale(.25) rotate(-10deg);
-    }
-    70% {
-        opacity: 1;
-        transform: translateY(-5px) scale(1.07) rotate(3deg);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0) scale(1) rotate(0);
-    }
+@keyframes flowerAppear {
+    from { opacity: 0; transform: translateY(25px) scale(.5); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes flowerSway {
+    0%, 100% { rotate: -2deg; }
+    50% { rotate: 2deg; }
 }
 
 .petal {
-    stroke: #9364ad;
-    stroke-width: 1.5;
-    stroke-linejoin: round;
+    transform-box: fill-box;
+    transform-origin: center bottom;
+    opacity: 0;
 }
 
-/* ENVOLTURA */
+.bouquet.reveal .petal {
+    animation: petalOpen 1s ease forwards;
+    animation-delay: 1.2s;
+}
+
+@keyframes petalOpen {
+    from { opacity: 0; transform: scaleY(.4); }
+    to { opacity: 1; transform: scaleY(1); }
+}
 
 .wrapping {
     opacity: 0;
-    transform: translateY(25px);
 }
 
 .bouquet.reveal .wrapping {
-    animation: wrapReveal 1s ease forwards;
-    animation-delay: 1.5s;
+    animation: wrappingAppear 1s ease 1.7s forwards;
 }
 
-@keyframes wrapReveal {
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+@keyframes wrappingAppear {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
 }
-
-.bouquet-message {
-    color: #89649d;
-    font-size: 18px;
-    font-style: italic;
-    margin: 0 0 18px;
-    opacity: 0;
-}
-
-.bouquet.reveal .bouquet-message {
-    animation: fadeIn 1s ease forwards;
-    animation-delay: 2.3s;
-}
-
-.flower-actions {
-    opacity: 0;
-}
-
-.bouquet.reveal ~ .flower-actions {
-    animation: fadeIn 1s ease forwards;
-    animation-delay: 2.6s;
-}
-
-/* DESTELLOS */
 
 .sparkle {
-    fill: #fff3b7;
     opacity: 0;
 }
 
 .bouquet.reveal .sparkle {
-    animation: sparkle 2.5s ease-in-out infinite;
-    animation-delay: 2s;
+    animation: sparkle 2s ease-in-out 2s infinite;
 }
 
 @keyframes sparkle {
-    0%, 100% {
-        opacity: .1;
-        transform: scale(.6);
-    }
-    50% {
-        opacity: 1;
-        transform: scale(1.3);
-    }
+    0%, 100% { opacity: .2; transform: scale(.7); }
+    50% { opacity: 1; transform: scale(1.3); }
 }
 
-/* RESPONSIVE */
+.bouquet-message {
+    opacity: 0;
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 20px;
+    color: #9567b5;
+    margin-top: 5px;
+}
 
-@media(max-width: 500px) {
-    .screen {
-        padding: 22px 14px;
+.bouquet.reveal + .bouquet-message {
+    animation: messageAppear 1s ease 2.3s forwards;
+}
+
+@keyframes messageAppear {
+    to { opacity: 1; }
+}
+
+.music-note {
+    margin-top: 18px;
+    font-size: 13px;
+    color: #886b99;
+}
+
+/* CELULARES */
+
+@media (max-width: 480px) {
+    .letter {
+        padding: 27px 22px;
+    }
+
+    .letter h2 {
+        font-size: 1.7rem;
     }
 
     .letter p {
-        font-size: 15px;
-        line-height: 1.8;
+        font-size: 13px;
     }
 
-    .envelope-area {
-        transform: scale(.9);
+    .envelope {
+        width: 220px;
+        height: 145px;
     }
 }
-
 </style>
 </head>
 
 <body>
 
-<div id="decorations"></div>
+<div class="background-heart heart1">♡</div>
+<div class="background-heart heart2">♡</div>
+<div class="background-heart heart3">✧</div>
+<div class="background-heart heart4">♡</div>
 
-<!-- PORTADA -->
+<!-- PANTALLA 1: SOBRE -->
 <section class="screen active" id="coverScreen">
+    <h1>Un pequeño regalo para ti 💜</h1>
+    <p>Hay algo que preparé con mucho cariño...</p>
 
-    <div class="cover">
-
-        <span class="small-label">UN DETALLE HECHO CON CARIÑO</span>
-
-        <h1>Algo especial para ti 💜</h1>
-
-        <p>
-            Preparé una pequeña sorpresa.
-            Espero que te guste tanto como a mí
-            me gustó prepararla.
-        </p>
-
-        <div class="envelope-area">
-
-            <div class="envelope" id="envelope">
-
-                <div class="envelope-back"></div>
-
-                <div class="envelope-letter">
-                    <span>Para ti ♡</span>
-                </div>
-
-                <div class="envelope-front"></div>
-                <div class="envelope-flap"></div>
-
-                <div class="envelope-seal">💜</div>
-
-            </div>
-
-        </div>
-
-        <button class="main-button" onclick="openLetter()">
-            Abrir mi carta 💌
-        </button>
-
+    <div class="envelope" onclick="openLetter()">
+        <div class="envelope-bottom"></div>
     </div>
 
+    <button class="main-button" onclick="openLetter()">
+        Abrir mi regalo ✉️
+    </button>
 </section>
 
-
-<!-- CARTA -->
+<!-- PANTALLA 2: CARTA -->
 <section class="screen" id="letterScreen">
-
-    <div class="letter" id="letter">
-
-        <h2>Para alguien especial ♡</h2>
+    <div class="letter">
+        <h2>¡Feliz cumpleaños! ✨</h2>
 
         <p>
-            Hoy quiero desearte un cumpleaños muy bonito.
-            Espero que este nuevo año de vida esté lleno
-            de momentos que te hagan sonreír, experiencias
-            especiales y muchas razones para sentirte feliz.
+            Hoy es un día especial y no quería dejarlo pasar
+            sin dedicarte unas palabras.
         </p>
 
         <p>
-            Deseo que nunca te falten motivos para seguir
-            soñando, personas que te valoren y oportunidades
-            para cumplir todo aquello que deseas.
+            Espero que esta nueva etapa de tu vida esté llena
+            de momentos bonitos, nuevas experiencias y muchas
+            razones para sonreír.
         </p>
 
         <p>
-            Espero que hoy puedas disfrutar muchísimo,
-            que recibas todo el cariño que mereces y que
-            guardes recuerdos muy bonitos de este día.
+            Deseo que cada uno de tus sueños encuentre su
+            camino y que nunca te falten motivos para seguir
+            adelante. Que la vida te sorprenda con cosas
+            maravillosas y personas que te hagan bien.
         </p>
 
         <p>
-            Preparé este pequeño detalle con mucho cariño.
-            Tal vez no sea un regalo enorme, pero espero
-            que pueda sacarte una sonrisa y hacerte sentir
-            un poquito más especial.
+            Gracias por compartir un poquito de tu tiempo
+            conmigo. Espero que hoy recibas todo el cariño
+            y la felicidad que mereces.
         </p>
 
         <p>
-            ¡Feliz cumpleaños! Que la vida te sorprenda
-            con cosas maravillosas y que tengas muchísimos
-            motivos para ser feliz. 🌷
+            Disfruta mucho tu día. ¡Que sea el comienzo de
+            un año increíble para ti! 💜
         </p>
 
         <div class="signature">
             Con cariño,<br>
             Dayan. 💜
         </div>
-
     </div>
 
-    <div class="letter-actions" id="letterActions">
-
-        <button class="main-button" onclick="showFlowers()">
-            Descubrir mi regalo 🌷
-        </button>
-
-    </div>
-
+    <button class="main-button" onclick="showFlowers()">
+        Tengo algo más para ti 🌷
+    </button>
 </section>
 
-
-<!-- RAMO -->
+<!-- PANTALLA 3: FLORES -->
 <section class="screen" id="flowerScreen">
-
-    <span class="small-label">UN RAMO PARA TI</span>
-
-    <h1 class="flower-title">Flores lilas para ti 🌷</h1>
-
-    <p class="flower-subtitle">
-        Porque hay detalles pequeños que pueden
-        transmitir sentimientos muy bonitos.
-    </p>
+    <h1>Unas flores para ti 🌷</h1>
+    <p>Porque los días especiales merecen algo bonito.</p>
 
     <div class="bouquet" id="bouquet">
-
-        <svg class="bouquet-svg"
-             viewBox="0 0 600 550"
-             xmlns="http://www.w3.org/2000/svg">
-
+        <svg viewBox="0 0 650 610" xmlns="http://www.w3.org/2000/svg">
             <defs>
-
-                <linearGradient id="purpleA" x1="0" y1="0" x2="1" y2="1">
-                    <stop offset="0%" stop-color="#f0d9ff"/>
-                    <stop offset="55%" stop-color="#c99ae8"/>
-                    <stop offset="100%" stop-color="#9764bc"/>
+                <linearGradient id="petalGradient" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stop-color="#f0dfff"/>
+                    <stop offset="45%" stop-color="#c69ae8"/>
+                    <stop offset="100%" stop-color="#9566bd"/>
                 </linearGradient>
 
-                <linearGradient id="purpleB" x1="0" y1="0" x2="1" y2="1">
-                    <stop offset="0%" stop-color="#e5c4f5"/>
-                    <stop offset="100%" stop-color="#a574c8"/>
+                <linearGradient id="petalLight" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stop-color="#fff0ff"/>
+                    <stop offset="100%" stop-color="#c59ae6"/>
                 </linearGradient>
 
-                <linearGradient id="purpleC" x1="0" y1="0" x2="1" y2="1">
-                    <stop offset="0%" stop-color="#f7e8ff"/>
-                    <stop offset="100%" stop-color="#b88bd8"/>
+                <linearGradient id="leafGradient" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stop-color="#a7cba0"/>
+                    <stop offset="100%" stop-color="#4d805d"/>
                 </linearGradient>
 
-                <linearGradient id="paper" x1="0" y1="0" x2="1" y2="1">
-                    <stop offset="0%" stop-color="#f4e8fa"/>
-                    <stop offset="100%" stop-color="#c8a5dd"/>
+                <linearGradient id="paperGradient" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stop-color="#fff8ff"/>
+                    <stop offset="100%" stop-color="#d9c3e9"/>
                 </linearGradient>
 
+                <linearGradient id="ribbonGradient" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stop-color="#bd91dc"/>
+                    <stop offset="100%" stop-color="#8755ad"/>
+                </linearGradient>
             </defs>
 
-            <!-- TALLOS INDIVIDUALES -->
+            <!-- TALLOS -->
             <g>
-
-                <path class="stem" d="M300 420 Q250 300 115 145"/>
-                <path class="stem" d="M300 420 Q265 285 175 105"/>
-                <path class="stem" d="M300 420 Q280 275 235 75"/>
-                <path class="stem" d="M300 420 Q295 275 295 65"/>
-                <path class="stem" d="M300 420 Q315 270 355 75"/>
-                <path class="stem" d="M300 420 Q345 285 415 110"/>
-                <path class="stem" d="M300 420 Q370 305 490 165"/>
-                <path class="stem" d="M300 420 Q225 325 70 235"/>
-                <path class="stem" d="M300 420 Q365 325 530 240"/>
-                <path class="stem" d="M300 420 Q250 315 190 200"/>
-                <path class="stem" d="M300 420 Q340 315 400 200"/>
-
+                <path class="stem" d="M325 420 Q260 300 150 130"/>
+                <path class="stem" d="M325 420 Q280 300 245 95"/>
+                <path class="stem" d="M325 420 Q310 270 320 65"/>
+                <path class="stem" d="M325 420 Q360 270 400 95"/>
+                <path class="stem" d="M325 420 Q400 300 500 145"/>
+                <path class="stem" d="M325 420 Q250 310 85 220"/>
+                <path class="stem" d="M325 420 Q390 300 560 230"/>
+                <path class="stem" d="M325 420 Q325 280 325 175"/>
             </g>
 
             <!-- HOJAS -->
             <g>
-
-                <path class="leaf" d="M265 350 Q195 290 175 330 Q205 370 265 350Z"/>
-                <path class="leaf" d="M320 345 Q390 280 420 320 Q385 360 320 345Z"/>
-                <path class="leaf" d="M280 305 Q215 250 195 280 Q225 325 280 305Z"/>
-                <path class="leaf" d="M335 295 Q400 240 425 275 Q390 315 335 295Z"/>
-                <path class="leaf" d="M245 390 Q180 350 155 380 Q195 420 245 390Z"/>
-                <path class="leaf" d="M355 385 Q420 335 445 370 Q405 415 355 385Z"/>
-                <path class="leaf" d="M290 380 Q260 330 230 340 Q245 380 290 380Z"/>
-
+                <path class="leaf" d="M270 340 Q185 280 190 220 Q270 250 270 340"/>
+                <path class="leaf" d="M340 350 Q430 280 450 230 Q360 260 340 350"/>
+                <path class="leaf" d="M280 390 Q200 350 160 300 Q250 310 280 390"/>
+                <path class="leaf" d="M360 390 Q430 350 490 310 Q400 315 360 390"/>
+                <path class="leaf" d="M300 330 Q260 240 280 190 Q325 260 300 330"/>
+                <path class="leaf" d="M350 330 Q390 250 385 200 Q340 260 350 330"/>
+                <path class="leaf" d="M245 365 Q160 330 120 270 Q220 300 245 365"/>
+                <path class="leaf" d="M390 365 Q470 320 520 275 Q420 305 390 365"/>
             </g>
 
-            <!-- TULIPÁN 1 -->
-            <g class="tulip" style="--delay:.1s" transform="translate(115 145)">
-                <path class="petal" fill="url(#purpleB)"
-                    d="M-24 12 Q-42 -25 -25 -55 Q-7 -48 0 -23 Q8 -55 27 -55 Q45 -23 24 12 Q0 34 -24 12Z"/>
-                <path fill="#d8b1ed" stroke="#a77bc5" stroke-width="1.2"
-                    d="M-24 12 Q-18 -28 0 -23 Q18 -48 27 -55 Q37 -5 0 20Z"/>
-                <path fill="#f5e4ff" opacity=".65"
-                    d="M-19 -28 Q-12 -43 -5 -39 Q-10 -16 -19 -8Z"/>
+            <!-- FLORES -->
+            <g class="tulip" style="--delay:.1s">
+                <path class="petal" fill="url(#petalGradient)" d="M115 145 Q85 80 125 48 Q145 83 150 125 Q165 75 195 65 Q220 115 175 160 Q145 175 115 145"/>
+                <path class="petal" fill="url(#petalLight)" d="M115 145 Q125 95 150 78 Q170 105 175 160 Q145 180 115 145"/>
             </g>
 
-            <!-- TULIPÁN 2 -->
-            <g class="tulip" style="--delay:.25s" transform="translate(175 105)">
-                <path class="petal" fill="url(#purpleA)"
-                    d="M-25 12 Q-45 -25 -25 -58 Q-8 -48 0 -24 Q8 -58 28 -57 Q46 -20 25 12 Q0 34 -25 12Z"/>
-                <path fill="#c99ae5" stroke="#9764bc" stroke-width="1.2"
-                    d="M-25 12 Q-17 -25 0 -24 Q18 -48 28 -57 Q36 -2 0 21Z"/>
-                <path fill="#fff0ff" opacity=".6"
-                    d="M-18 -35 Q-10 -49 -5 -38 Q-10 -20 -18 -15Z"/>
+            <g class="tulip" style="--delay:.3s">
+                <path class="petal" fill="url(#petalGradient)" d="M205 105 Q175 40 220 15 Q240 55 245 85 Q265 35 295 30 Q315 85 270 120 Q235 135 205 105"/>
+                <path class="petal" fill="url(#petalLight)" d="M205 105 Q220 55 245 45 Q270 70 270 120 Q235 135 205 105"/>
             </g>
 
-            <!-- TULIPÁN 3 -->
-            <g class="tulip" style="--delay:.4s" transform="translate(235 75)">
-                <path class="petal" fill="url(#purpleC)"
-                    d="M-25 12 Q-45 -25 -25 -58 Q-8 -48 0 -24 Q8 -58 28 -57 Q46 -20 25 12 Q0 34 -25 12Z"/>
-                <path fill="#d8b4ed" stroke="#a77bc5" stroke-width="1.2"
-                    d="M-25 12 Q-17 -25 0 -24 Q18 -48 28 -57 Q36 -2 0 21Z"/>
+            <g class="tulip" style="--delay:.5s">
+                <path class="petal" fill="url(#petalGradient)" d="M280 75 Q255 20 290 -5 Q315 25 320 60 Q340 15 370 10 Q395 65 350 95 Q310 110 280 75"/>
+                <path class="petal" fill="url(#petalLight)" d="M280 75 Q300 30 320 25 Q345 50 350 95 Q310 110 280 75"/>
             </g>
 
-            <!-- TULIPÁN 4 -->
-            <g class="tulip" style="--delay:.55s" transform="translate(295 65)">
-                <path class="petal" fill="url(#purpleB)"
-                    d="M-25 12 Q-45 -25 -25 -58 Q-8 -48 0 -24 Q8 -58 28 -57 Q46 -20 25 12 Q0 34 -25 12Z"/>
-                <path fill="#c89be4" stroke="#9764bc" stroke-width="1.2"
-                    d="M-25 12 Q-17 -25 0 -24 Q18 -48 28 -57 Q36 -2 0 21Z"/>
-                <path fill="#f9eaff" opacity=".65"
-                    d="M-17 -36 Q-9 -48 -5 -37 Q-10 -20 -17 -15Z"/>
+            <g class="tulip" style="--delay:.7s">
+                <path class="petal" fill="url(#petalGradient)" d="M360 105 Q335 45 370 20 Q395 55 400 85 Q420 40 450 35 Q475 90 430 125 Q395 140 360 105"/>
+                <path class="petal" fill="url(#petalLight)" d="M360 105 Q380 55 400 50 Q425 75 430 125 Q395 140 360 105"/>
             </g>
 
-            <!-- TULIPÁN 5 -->
-            <g class="tulip" style="--delay:.7s" transform="translate(355 75)">
-                <path class="petal" fill="url(#purpleA)"
-                    d="M-25 12 Q-45 -25 -25 -58 Q-8 -48 0 -24 Q8 -58 28 -57 Q46 -20 25 12 Q0 34 -25 12Z"/>
-                <path fill="#d5a9ed" stroke="#9764bc" stroke-width="1.2"
-                    d="M-25 12 Q-17 -25 0 -24 Q18 -48 28 -57 Q36 -2 0 21Z"/>
+            <g class="tulip" style="--delay:.9s">
+                <path class="petal" fill="url(#petalGradient)" d="M465 155 Q435 95 475 65 Q500 100 500 135 Q525 85 555 90 Q575 140 530 175 Q495 190 465 155"/>
+                <path class="petal" fill="url(#petalLight)" d="M465 155 Q480 105 500 95 Q525 120 530 175 Q495 190 465 155"/>
             </g>
 
-            <!-- TULIPÁN 6 -->
-            <g class="tulip" style="--delay:.85s" transform="translate(415 110)">
-                <path class="petal" fill="url(#purpleC)"
-                    d="M-25 12 Q-45 -25 -25 -58 Q-8 -48 0 -24 Q8 -58 28 -57 Q46 -20 25 12 Q0 34 -25 12Z"/>
-                <path fill="#c89be4" stroke="#9764bc" stroke-width="1.2"
-                    d="M-25 12 Q-17 -25 0 -24 Q18 -48 28 -57 Q36 -2 0 21Z"/>
+            <g class="tulip" style="--delay:1.1s">
+                <path class="petal" fill="url(#petalGradient)" d="M55 235 Q25 175 65 145 Q90 180 90 215 Q115 165 145 170 Q165 220 120 255 Q85 270 55 235"/>
+                <path class="petal" fill="url(#petalLight)" d="M55 235 Q70 185 90 175 Q115 200 120 255 Q85 270 55 235"/>
             </g>
 
-            <!-- TULIPÁN 7 -->
-            <g class="tulip" style="--delay:1s" transform="translate(490 165)">
-                <path class="petal" fill="url(#purpleB)"
-                    d="M-25 12 Q-45 -25 -25 -58 Q-8 -48 0 -24 Q8 -58 28 -57 Q46 -20 25 12 Q0 34 -25 12Z"/>
-                <path fill="#d8b1ed" stroke="#9764bc" stroke-width="1.2"
-                    d="M-25 12 Q-17 -25 0 -24 Q18 -48 28 -57 Q36 -2 0 21Z"/>
+            <g class="tulip" style="--delay:1.3s">
+                <path class="petal" fill="url(#petalGradient)" d="M520 245 Q490 185 530 155 Q555 190 560 225 Q580 175 610 180 Q630 230 585 265 Q550 280 520 245"/>
+                <path class="petal" fill="url(#petalLight)" d="M520 245 Q535 195 560 185 Q580 210 585 265 Q550 280 520 245"/>
             </g>
 
-            <!-- TULIPÁN 8 -->
-            <g class="tulip" style="--delay:1.15s" transform="translate(70 235)">
-                <path class="petal" fill="url(#purpleA)"
-                    d="M-25 12 Q-45 -25 -25 -58 Q-8 -48 0 -24 Q8 -58 28 -57 Q46 -20 25 12 Q0 34 -25 12Z"/>
-                <path fill="#c99ae5" stroke="#9764bc" stroke-width="1.2"
-                    d="M-25 12 Q-17 -25 0 -24 Q18 -48 28 -57 Q36 -2 0 21Z"/>
+            <g class="tulip" style="--delay:1.5s">
+                <path class="petal" fill="url(#petalGradient)" d="M280 185 Q250 125 290 95 Q315 130 325 165 Q345 115 375 120 Q395 170 350 205 Q315 220 280 185"/>
+                <path class="petal" fill="url(#petalLight)" d="M280 185 Q300 135 325 125 Q350 150 350 205 Q315 220 280 185"/>
             </g>
 
-            <!-- TULIPÁN 9 -->
-            <g class="tulip" style="--delay:1.3s" transform="translate(530 240)">
-                <path class="petal" fill="url(#purpleC)"
-                    d="M-25 12 Q-45 -25 -25 -58 Q-8 -48 0 -24 Q8 -58 28 -57 Q46 -20 25 12 Q0 34 -25 12Z"/>
-                <path fill="#c99ae5" stroke="#9764bc" stroke-width="1.2"
-                    d="M-25 12 Q-17 -25 0 -24 Q18 -48 28 -57 Q36 -2 0 21Z"/>
-            </g>
+            <!-- PAPEL DEL RAMO -->
+            <g class="wrapping">
+                <path d="M190 380 Q325 420 460 380 L405 560 Q325 585 245 560 Z"
+                      fill="url(#paperGradient)" stroke="#c7a8df" stroke-width="3"/>
 
-            <!-- TULIPÁN 10 -->
-            <g class="tulip" style="--delay:1.45s" transform="translate(190 200)">
-                <path class="petal" fill="url(#purpleB)"
-                    d="M-25 12 Q-45 -25 -25 -58 Q-8 -48 0 -24 Q8 -58 28 -57 Q46 -20 25 12 Q0 34 -25 12Z"/>
-                <path fill="#e0c1f0" stroke="#9764bc" stroke-width="1.2"
-                    d="M-25 12 Q-17 -25 0 -24 Q18 -48 28 -57 Q36 -2 0 21Z"/>
-            </g>
+                <path d="M190 380 L325 460 L245 560 Z"
+                      fill="#e7d5f1" opacity=".8"/>
 
-            <!-- TULIPÁN 11 -->
-            <g class="tulip" style="--delay:1.6s" transform="translate(400 200)">
-                <path class="petal" fill="url(#purpleA)"
-                    d="M-25 12 Q-45 -25 -25 -58 Q-8 -48 0 -24 Q8 -58 28 -57 Q46 -20 25 12 Q0 34 -25 12Z"/>
-                <path fill="#d5a9ed" stroke="#9764bc" stroke-width="1.2"
-                    d="M-25 12 Q-17 -25 0 -24 Q18 -48 28 -57 Q36 -2 0 21Z"/>
+                <path d="M460 380 L325 460 L405 560 Z"
+                      fill="#d6bee8" opacity=".8"/>
+
+                <path d="M325 455 L325 560" stroke="#c2a0da" stroke-width="2" opacity=".7"/>
+
+                <!-- LAZO -->
+                <path d="M325 460 Q265 400 250 445 Q255 485 325 465"
+                      fill="url(#ribbonGradient)"/>
+
+                <path d="M325 460 Q385 400 400 445 Q395 485 325 465"
+                      fill="url(#ribbonGradient)"/>
+
+                <ellipse cx="325" cy="462" rx="17" ry="14" fill="#8755ad"/>
+
+                <path d="M315 470 L290 520 L325 500 L345 530 L337 470"
+                      fill="#a879c7"/>
             </g>
 
             <!-- DESTELLOS -->
-            <g class="sparkle">
-                <path d="M90 80 L96 96 L112 102 L96 108 L90 124 L84 108 L68 102 L84 96Z"/>
-                <path d="M495 65 L500 78 L513 83 L500 88 L495 101 L490 88 L477 83 L490 78Z"/>
-                <path d="M535 320 L540 332 L552 337 L540 342 L535 354 L530 342 L518 337 L530 332Z"/>
-                <path d="M60 330 L65 342 L77 347 L65 352 L60 364 L55 352 L43 347 L55 342Z"/>
+            <g fill="#fff7ff">
+                <path class="sparkle" d="M85 85 L92 105 L112 112 L92 119 L85 139 L78 119 L58 112 L78 105 Z"/>
+                <path class="sparkle" d="M520 65 L526 82 L543 88 L526 94 L520 111 L514 94 L497 88 L514 82 Z"/>
+                <path class="sparkle" d="M555 330 L560 345 L575 350 L560 355 L555 370 L550 355 L535 350 L550 345 Z"/>
+                <path class="sparkle" d="M120 330 L125 345 L140 350 L125 355 L120 370 L115 355 L100 350 L115 345 Z"/>
             </g>
-
-            <!-- ENVOLTURA -->
-            <g class="wrapping">
-
-                <path d="M185 370 Q300 410 415 370 L350 530 Q300 550 250 530Z"
-                      fill="url(#paper)"
-                      stroke="#ad84c2"
-                      stroke-width="2"/>
-
-                <path d="M185 370 Q300 435 415 370 L365 445 Q300 475 235 445Z"
-                      fill="#f8effb"
-                      opacity=".7"/>
-
-                <path d="M185 370 L250 530 L300 470 L350 530 L415 370"
-                      fill="none"
-                      stroke="#b38bc7"
-                      stroke-width="2"/>
-
-                <!-- LAZO -->
-                <path d="M300 420
-                         C260 380 215 405 250 445
-                         C275 470 300 435 300 420
-                         C325 385 370 405 350 445
-                         C330 470 300 435 300 420Z"
-                      fill="#9c70b5"
-                      stroke="#805397"
-                      stroke-width="2"/>
-
-                <circle cx="300" cy="425" r="12" fill="#805397"/>
-
-                <path d="M293 435 Q275 485 265 480 L282 425Z"
-                      fill="#ad83c5"/>
-
-                <path d="M307 435 Q325 485 335 480 L318 425Z"
-                      fill="#ad83c5"/>
-
-            </g>
-
         </svg>
-
-        <p class="bouquet-message">
-            Unas flores para alegrar tu día. 💜
-        </p>
-
     </div>
 
-    <div class="flower-actions">
+    <p class="bouquet-message">
+        Unas flores para alegrar tu día. 💜
+    </p>
 
-        <button class="main-button" onclick="playSong()">
-            ♫ Escuchar Cicatrices en Spotify
-        </button>
+    <button class="main-button" onclick="playSong()">
+        Escuchar nuestra canción 🎵
+    </button>
 
-        <button class="secondary-button" onclick="restartCard()">
-            Volver a ver la sorpresa ↻
-        </button>
+    <p class="music-note">
+        Una canción para acompañar este pequeño detalle.
+    </p>
 
-    </div>
-
+    <button class="main-button" onclick="restartCard()">
+        Volver a ver mi regalo ↩
+    </button>
 </section>
 
-
 <script>
-
-/* ELEMENTOS DECORATIVOS DEL FONDO */
-
-const decorations = document.getElementById("decorations");
-
-const symbols = ["♡", "✦", "♥", "✧"];
-
-for (let i = 0; i < 25; i++) {
-
-    const item = document.createElement("span");
-
-    item.className = "float-item";
-    item.textContent = symbols[Math.floor(Math.random() * symbols.length)];
-
-    item.style.left = Math.random() * 100 + "%";
-    item.style.fontSize = (13 + Math.random() * 18) + "px";
-    item.style.color = ["#b88bd0", "#d49fca", "#ffffff"][Math.floor(Math.random() * 3)];
-    item.style.animationDuration = (9 + Math.random() * 12) + "s";
-    item.style.animationDelay = Math.random() * 12 + "s";
-
-    decorations.appendChild(item);
-}
-
-
-/* CAMBIAR DE PANTALLA */
-
-function changeScreen(id) {
-
-    document.querySelectorAll(".screen").forEach(screen => {
-        screen.classList.remove("active");
+function changeScreen(screenId) {
+    document.querySelectorAll('.screen').forEach(screen => {
+        screen.classList.remove('active');
     });
 
-    document.getElementById(id).classList.add("active");
-
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    });
+    document.getElementById(screenId).classList.add('active');
 }
-
-
-/* ABRIR SOBRE Y MOSTRAR CARTA */
 
 function openLetter() {
-
-    const envelope = document.getElementById("envelope");
-
-    envelope.classList.add("open");
-
-    setTimeout(() => {
-
-        changeScreen("letterScreen");
-
-        const letter = document.getElementById("letter");
-        const actions = document.getElementById("letterActions");
-
-        letter.classList.remove("reveal");
-        actions.classList.remove("reveal");
-
-        void letter.offsetWidth;
-
-        letter.classList.add("reveal");
-
-        setTimeout(() => {
-            actions.classList.add("reveal");
-        }, 1700);
-
-    }, 900);
+    changeScreen('letterScreen');
 }
 
-
-/* MOSTRAR EL RAMO */
-
 function showFlowers() {
+    changeScreen('flowerScreen');
 
-    changeScreen("flowerScreen");
+    const bouquet = document.getElementById('bouquet');
 
-    const bouquet = document.getElementById("bouquet");
-
-    bouquet.classList.remove("reveal");
+    bouquet.classList.remove('reveal');
 
     void bouquet.offsetWidth;
 
-    bouquet.classList.add("reveal");
-
+    bouquet.classList.add('reveal');
 }
-
-
-/* ABRIR SPOTIFY */
 
 function playSong() {
-
     window.open(
-        "https://open.spotify.com/search/Cicatrices%20Airbag",
-        "_blank"
+        'https://open.spotify.com/search/Cicatrices%20Airbag',
+        '_blank'
     );
-
 }
-
-
-/* REINICIAR LA EXPERIENCIA */
 
 function restartCard() {
-
-    document.getElementById("envelope").classList.remove("open");
-
-    document.getElementById("letter").classList.remove("reveal");
-
-    document.getElementById("letterActions").classList.remove("reveal");
-
-    document.getElementById("bouquet").classList.remove("reveal");
-
-    changeScreen("coverScreen");
-
+    document.getElementById('bouquet').classList.remove('reveal');
+    changeScreen('coverScreen');
 }
-
 </script>
 
 </body>
