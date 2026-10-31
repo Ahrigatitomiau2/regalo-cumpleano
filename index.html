@@ -1,0 +1,482 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Un detalle para ti 💜</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100vh;
+    background: linear-gradient(135deg,#eee1fa,#fceafa,#dcd0f4);
+    font-family: Georgia, serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 25px 12px;
+    color: #79558e;
+}
+
+.container {
+    width: 100%;
+    max-width: 650px;
+    padding: 35px 22px;
+    background: #ffffffd9;
+    border-radius: 25px;
+    text-align: center;
+    box-shadow: 0 12px 40px #9270a744;
+}
+
+h1 {
+    color: #8658a6;
+    font-size: 32px;
+    margin-bottom: 15px;
+}
+
+p {
+    line-height: 1.8;
+}
+
+.subtitle {
+    font-style: italic;
+    color: #a181b3;
+    margin-bottom: 25px;
+}
+
+button {
+    border: none;
+    padding: 14px 25px;
+    border-radius: 30px;
+    background: #a77bc4;
+    color: white;
+    font-size: 15px;
+    cursor: pointer;
+    margin: 10px 5px;
+    transition: .3s;
+}
+
+button:hover {
+    background: #8052a3;
+    transform: scale(1.05);
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* SOBRE */
+
+.envelope {
+    font-size: 90px;
+    margin: 25px 0;
+    animation: float 3s infinite;
+}
+
+@keyframes float {
+    50% { transform: translateY(-10px); }
+}
+
+/* CARTA */
+
+.letter {
+    background: #fffaff;
+    border: 2px solid #dfc4ed;
+    border-radius: 20px;
+    padding: 28px 22px;
+    margin-top: 25px;
+    animation: appear 1.2s ease;
+}
+
+.letter h2 {
+    color: #9566b3;
+    margin-bottom: 20px;
+}
+
+.letter p {
+    margin-bottom: 15px;
+    color: #775b84;
+}
+
+.signature {
+    margin-top: 25px;
+    color: #9669b2;
+    font-style: italic;
+    font-weight: bold;
+}
+
+/* RAMO */
+
+#flowers {
+    margin-top: 35px;
+    animation: appear 1.5s ease;
+}
+
+#flowers h2 {
+    color: #8959a9;
+    margin-bottom: 10px;
+}
+
+.bouquet {
+    width: 100%;
+    max-width: 510px;
+    margin: 15px auto;
+}
+
+.bouquet svg {
+    width: 100%;
+    height: auto;
+    overflow: visible;
+}
+
+.flower {
+    transform-box: fill-box;
+    transform-origin: bottom center;
+    animation: sway 3s ease-in-out infinite;
+}
+
+.flower:nth-child(even) {
+    animation-delay: .6s;
+}
+
+@keyframes sway {
+    0%,100% { transform: rotate(-3deg); }
+    50% { transform: rotate(3deg); }
+}
+
+@keyframes appear {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.music {
+    margin-top: 25px;
+    padding: 20px;
+    border-radius: 20px;
+    background: #f5eafb;
+}
+
+.music h3 {
+    color: #8959a9;
+    margin-bottom: 8px;
+}
+
+.footer {
+    margin-top: 25px;
+    font-size: 13px;
+    color: #ae91bc;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- PORTADA -->
+
+    <section id="start">
+
+        <h1>¡Feliz cumpleaños! 💜</h1>
+
+        <p class="subtitle">
+            Hay pequeños detalles que pueden hacer
+            un día todavía más especial...
+        </p>
+
+        <div class="envelope">💌</div>
+
+        <p>He preparado algo para ti.</p>
+
+        <button onclick="openLetter()">
+            Abrir tu carta 💜
+        </button>
+
+    </section>
+
+
+    <!-- CARTA -->
+
+    <section id="letter" class="hidden">
+
+        <h1>Una carta para ti</h1>
+
+        <div class="letter">
+
+            <h2>¡Feliz cumpleaños! 🌷</h2>
+
+            <p>
+                Hoy es un día especial y quería dedicarte
+                unas palabras para desearte lo mejor.
+            </p>
+
+            <p>
+                Espero que esta nueva etapa de tu vida
+                esté llena de felicidad, momentos
+                inolvidables y personas que te hagan
+                sonreír.
+            </p>
+
+            <p>
+                Nunca dejes de perseguir tus sueños,
+                de disfrutar las pequeñas cosas
+                y de encontrar motivos para ser feliz.
+            </p>
+
+            <p>
+                Quería regalarte algo diferente,
+                un pequeño detalle que espero
+                pueda sacarte una sonrisa.
+            </p>
+
+            <div class="signature">
+                Con cariño, Dayan. 💜
+            </div>
+
+        </div>
+
+        <button onclick="showFlowers()">
+            Descubrir mi regalo 🌷
+        </button>
+
+    </section>
+
+
+    <!-- TULIPANES -->
+
+    <section id="flowers" class="hidden">
+
+        <h1>Un ramo para ti 💜</h1>
+
+        <p>
+            Doce tulipanes, elegidos especialmente
+            para celebrar tu día.
+        </p>
+
+        <div class="bouquet">
+
+        <svg viewBox="0 0 500 490"
+             xmlns="http://www.w3.org/2000/svg">
+
+            <defs>
+                <linearGradient id="petal1" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stop-color="#e8c9ff"/>
+                    <stop offset="100%" stop-color="#a66bd1"/>
+                </linearGradient>
+
+                <linearGradient id="petal2" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stop-color="#d9b5fa"/>
+                    <stop offset="100%" stop-color="#8050b1"/>
+                </linearGradient>
+
+                <linearGradient id="petal3" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stop-color="#f0dfff"/>
+                    <stop offset="100%" stop-color="#bb8be1"/>
+                </linearGradient>
+
+                <g id="tulip">
+                    <path d="M0 0 Q-5 95 0 190"
+                          stroke="#638b61" stroke-width="5"
+                          fill="none"/>
+
+                    <path d="M0 125 Q-40 90 -35 145
+                             Q-15 175 0 165"
+                          fill="#7ba77a"/>
+
+                    <path d="M0 155 Q35 110 43 140
+                             Q35 175 0 185"
+                          fill="#91b487"/>
+
+                    <path d="M-27 0
+                             Q-35 -25 -22 -52
+                             Q-12 -30 0 -57
+                             Q12 -30 22 -52
+                             Q35 -25 27 0
+                             Q15 15 0 10
+                             Q-15 15 -27 0Z"
+                          fill="url(#petal1)"
+                          stroke="#a77bc4"
+                          stroke-width="2"/>
+
+                    <path d="M-22 -3 Q-22 -27 -10 -40
+                             Q-8 -10 0 8
+                             Q-15 8 -22 -3Z"
+                          fill="#f0ddff" opacity=".75"/>
+
+                    <path d="M22 -3 Q22 -27 10 -40
+                             Q8 -10 0 8
+                             Q15 8 22 -3Z"
+                          fill="url(#petal2)"/>
+
+                    <path d="M-7 -5 Q0 -38 7 -5"
+                          fill="#c38ce8"/>
+                </g>
+            </defs>
+
+            <!-- TALLOS Y FLORES -->
+
+            <g class="flower" transform="translate(130 170) rotate(-18)">
+                <use href="#tulip"/>
+            </g>
+
+            <g class="flower" transform="translate(185 115) rotate(-10)">
+                <use href="#tulip"/>
+            </g>
+
+            <g class="flower" transform="translate(240 90)">
+                <use href="#tulip"/>
+            </g>
+
+            <g class="flower" transform="translate(295 115) rotate(10)">
+                <use href="#tulip"/>
+            </g>
+
+            <g class="flower" transform="translate(350 170) rotate(18)">
+                <use href="#tulip"/>
+            </g>
+
+            <g class="flower" transform="translate(95 235) rotate(-25)">
+                <use href="#tulip"/>
+            </g>
+
+            <g class="flower" transform="translate(155 205) rotate(-12)">
+                <use href="#tulip"/>
+            </g>
+
+            <g class="flower" transform="translate(215 180)">
+                <use href="#tulip"/>
+            </g>
+
+            <g class="flower" transform="translate(275 205) rotate(12)">
+                <use href="#tulip"/>
+            </g>
+
+            <g class="flower" transform="translate(335 235) rotate(25)">
+                <use href="#tulip"/>
+            </g>
+
+            <g class="flower" transform="translate(180 280) rotate(-8)">
+                <use href="#tulip"/>
+            </g>
+
+            <g class="flower" transform="translate(300 280) rotate(8)">
+                <use href="#tulip"/>
+            </g>
+
+            <!-- ENVOLTURA -->
+
+            <path d="M100 320 Q250 380 400 320
+                     L330 455 Q250 485 170 455Z"
+                  fill="#e8d6f2"
+                  stroke="#c7a6dd"
+                  stroke-width="3"/>
+
+            <path d="M100 320 Q250 400 400 320"
+                  fill="none"
+                  stroke="#ffffff"
+                  stroke-width="5"/>
+
+            <path d="M250 385 L250 460"
+                  stroke="#b184cc"
+                  stroke-width="4"/>
+
+            <!-- LAZO -->
+
+            <path d="M250 390
+                     Q200 345 175 390
+                     Q190 430 250 400
+                     Q310 430 325 390
+                     Q300 345 250 390Z"
+                  fill="#ae83cc"
+                  stroke="#9465b2"
+                  stroke-width="2"/>
+
+            <circle cx="250" cy="395" r="12"
+                    fill="#d9b5ed"/>
+
+        </svg>
+
+        </div>
+
+        <p>
+            Que nunca te falten razones para florecer. 🌷
+        </p>
+
+        <div class="music">
+
+            <h3>Una canción para acompañar este detalle 🎵</h3>
+
+            <p>
+                Cicatrices — Airbag
+            </p>
+
+            <button onclick="playSong()">
+                ▶ Escuchar canción
+            </button>
+
+        </div>
+
+        <p class="signature">
+            Con cariño, Dayan. 💜
+        </p>
+
+    </section>
+
+    <div class="footer">
+        Un pequeño detalle hecho especialmente para ti.
+    </div>
+
+</div>
+
+
+<script>
+
+function openLetter() {
+
+    document.getElementById("start")
+        .classList.add("hidden");
+
+    document.getElementById("letter")
+        .classList.remove("hidden");
+
+}
+
+function showFlowers() {
+
+    document.getElementById("flowers")
+        .classList.remove("hidden");
+
+    document.getElementById("flowers")
+        .scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
+
+}
+
+function playSong() {
+
+    window.open(
+        "https://www.youtube.com/results?search_query=Cicatrices+Airbag+oficial",
+        "_blank"
+    );
+
+}
+
+</script>
+
+</body>
+</html>
